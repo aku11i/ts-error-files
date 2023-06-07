@@ -42,4 +42,23 @@ describe("tsc-error-files", () => {
       assert.strictEqual(result, expected);
     });
   });
+
+  describe("--help option", () => {
+    it("should print help message", () => {
+      const command = `npm --silent run dev -- --help`;
+
+      const result = execSync(command).toString();
+
+      const expected =
+        [
+          "Usage: tsc-error-files [options]",
+          "",
+          "Options:",
+          "  -c, --config <path>  Path to tsconfig.json or its directory",
+          "  -h, --help           Display this help message",
+        ].join("\n") + "\n";
+
+      assert.strictEqual(result, expected);
+    });
+  });
 });

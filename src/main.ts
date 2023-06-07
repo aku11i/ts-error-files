@@ -11,9 +11,30 @@ const options: ParseArgsConfig["options"] = {
     short: "c",
     default: "tsconfig.json",
   },
+  help: {
+    type: "boolean",
+    short: "h",
+    default: false,
+  },
 };
 
 const { values } = parseArgs({ options, args });
+
+const help = typeof values["help"] === "boolean" && values["help"];
+
+if (help) {
+  const message = [
+    "Usage: tsc-error-files [options]",
+    "",
+    "Options:",
+    "  -c, --config <path>  Path to tsconfig.json or its directory",
+    "  -h, --help           Display this help message",
+  ].join("\n");
+
+  console.log(message);
+
+  process.exit(0);
+}
 
 // TODO Validation
 // TODO existing check
