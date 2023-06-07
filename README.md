@@ -1,11 +1,11 @@
-# tsc-error-files
+# ts-error-files
 
 A CLI tool for listing TypeScript files where errors have occurred.
 
 ## Installation
 
 ```sh
-npm install --global tsc-error-files
+npm install --global ts-error-files
 ```
 
 ## Usage
@@ -13,11 +13,11 @@ npm install --global tsc-error-files
 ### Open all files with errors in VSCode at once
 
 ```sh
-code $(tsc-error-files)
+code $(ts-error-files)
 ```
 
 ### Print a list of files where errors have occurred
 
 ```sh
-tsc-error-files
+ts-error-files
 ```

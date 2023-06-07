@@ -24,7 +24,7 @@ const help = typeof values["help"] === "boolean" && values["help"];
 
 if (help) {
   const message = [
-    "Usage: tsc-error-files [options]",
+    "Usage: ts-error-files [options]",
     "",
     "Options:",
     "  -c, --config <path>  Path to tsconfig.json or its directory",

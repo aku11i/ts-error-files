@@ -2,7 +2,7 @@ import { describe, it } from "node:test";
 import { execSync } from "child_process";
 import assert from "assert";
 
-describe("tsc-error-files", () => {
+describe("ts-error-files", () => {
   it("should print nothing when tsc is succeeded", () => {
     const command = `npm --silent run dev -- --config test-cases/no-errors/tsconfig.json`;
 
@@ -20,8 +20,8 @@ describe("tsc-error-files", () => {
 
     const expected =
       [
-        "/Users/main/ghq/github.com/aku11i/tsc-error-files/test-cases/has-errors/type-error.ts",
-        "/Users/main/ghq/github.com/aku11i/tsc-error-files/test-cases/has-errors/syntax-error.ts",
+        "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/type-error.ts",
+        "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/syntax-error.ts",
       ].join("\n") + "\n";
 
     assert.strictEqual(result, expected);
@@ -35,8 +35,8 @@ describe("tsc-error-files", () => {
 
       const expected =
         [
-          "/Users/main/ghq/github.com/aku11i/tsc-error-files/test-cases/has-errors/type-error.ts",
-          "/Users/main/ghq/github.com/aku11i/tsc-error-files/test-cases/has-errors/syntax-error.ts",
+          "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/type-error.ts",
+          "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/syntax-error.ts",
         ].join("\n") + "\n";
 
       assert.strictEqual(result, expected);
@@ -51,7 +51,7 @@ describe("tsc-error-files", () => {
 
       const expected =
         [
-          "Usage: tsc-error-files [options]",
+          "Usage: ts-error-files [options]",
           "",
           "Options:",
           "  -c, --config <path>  Path to tsconfig.json or its directory",
