@@ -15,7 +15,7 @@
     "test": "npm run test:e2e",
     "test:e2e": "node --test --loader=ts-node/esm/transpile-only e2e.test.ts",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run test && npm run build"
   },
   "keywords": [],
   "author": "aku11i",
