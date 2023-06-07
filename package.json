@@ -1,6 +1,6 @@
 {
   "name": "ts-error-files",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "type": "module",
   "bin": "dist/cli.js",
