@@ -3,7 +3,7 @@
 import { ParseArgsConfig, parseArgs } from "util";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { Project } from "ts-morph";
+import { DiagnosticCategory, Project } from "ts-morph";
 import { findErrorDiagnostics } from "./find-error-diagnostics.js";
 import { printDiagnostics } from "./print-diagnostics.js";
 
@@ -65,8 +65,7 @@ const printPosition =
   typeof values["position"] === "boolean" && values["position"];
 
 const project = new Project({ tsConfigFilePath });
-const program = project.getProgram();
 
-const errorDiagnostics = findErrorDiagnostics(program);
+const errorDiagnostics = findErrorDiagnostics(project);
 
 printDiagnostics(errorDiagnostics, { printPosition, printReason });
