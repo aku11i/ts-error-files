@@ -3,15 +3,14 @@
   "version": "0.0.2",
   "description": "",
   "type": "module",
-  "module": "dist/main.js",
-  "bin": "dist/main.js",
+  "bin": "dist/cli.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "start": "node dist/main.js",
+    "start": "node dist/cli.js",
     "build": "shx rm -rf dist && tsc",
-    "dev": "ts-node --esm --transpileOnly src/main.ts",
+    "dev": "ts-node --esm --transpileOnly src/cli.ts",
     "test": "npm run test:e2e",
     "test:e2e": "node --test --loader=ts-node/esm/transpile-only e2e.test.ts",
     "type-check": "tsc --noEmit",
