@@ -4,6 +4,8 @@ export function findErrorDiagnostics(project: Project): Diagnostic[] {
   return project
     .getPreEmitDiagnostics()
     .filter(
-      (diagnostic) => diagnostic.getCategory() === DiagnosticCategory.Error
+      (diagnostic) =>
+        diagnostic.getCategory() === DiagnosticCategory.Error &&
+        !diagnostic.compilerObject.reportsUnnecessary
     );
 }
