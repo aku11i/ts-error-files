@@ -1,5 +1,7 @@
 import { DiagnosticCategory, Project } from "ts-morph";
 import { ParseArgsConfig, parseArgs } from "node:util";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 const [, , ...args] = process.argv;
 
@@ -14,7 +16,14 @@ const options: ParseArgsConfig["options"] = {
 const { values } = parseArgs({ options, args });
 
 // TODO Validation
-const tsConfigFilePath = values["config"] as string;
+// TODO existing check
+const tsConfigFilePath = (() => {
+  const maybe = values["config"] as string;
+
+  return fs.statSync(maybe).isDirectory()
+    ? path.join(maybe, "tsconfig.json")
+    : maybe;
+})();
 
 const project = new Project({ tsConfigFilePath });
 const program = project.getProgram();
