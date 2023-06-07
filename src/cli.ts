@@ -3,7 +3,7 @@
 import { ParseArgsConfig, parseArgs } from "util";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { DiagnosticCategory, Project } from "ts-morph";
+import { Project } from "ts-morph";
 import { findErrorDiagnostics } from "./find-error-diagnostics.js";
 import { printDiagnostics } from "./print-diagnostics.js";
 
