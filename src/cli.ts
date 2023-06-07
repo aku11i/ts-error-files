@@ -5,8 +5,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { Project } from "ts-morph";
 import { findErrorDiagnostics } from "./find-error-diagnostics.js";
-import { listFilesFromDiagnostics } from "./list-files-from-diagnostics.js";
-import { convertToRelativePath } from "./convert-to-relative-path.js";
+import { printDiagnostics } from "./print-diagnostics.js";
 
 const [, , ...args] = process.argv;
 
@@ -19,6 +18,16 @@ const options: ParseArgsConfig["options"] = {
   help: {
     type: "boolean",
     short: "h",
+    default: false,
+  },
+  reason: {
+    type: "boolean",
+    short: "r",
+    default: false,
+  },
+  position: {
+    type: "boolean",
+    short: "p",
     default: false,
   },
 };
@@ -51,12 +60,13 @@ const tsConfigFilePath = (() => {
     : maybe;
 })();
 
+const printReason = typeof values["reason"] === "boolean" && values["reason"];
+const printPosition =
+  typeof values["position"] === "boolean" && values["position"];
+
 const project = new Project({ tsConfigFilePath });
 const program = project.getProgram();
 
 const errorDiagnostics = findErrorDiagnostics(program);
-const errorFiles = listFilesFromDiagnostics(errorDiagnostics).map((file) =>
-  convertToRelativePath(file)
-);
 
-console.log(errorFiles.join("\n"));
+printDiagnostics(errorDiagnostics, { printPosition, printReason });

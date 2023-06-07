@@ -61,4 +61,52 @@ describe("ts-error-files", () => {
       assert.strictEqual(result, expected);
     });
   });
+
+  describe("--position option", () => {
+    it("should print position", () => {
+      const command = `npm --silent run dev -- --config test-cases/has-errors --position`;
+
+      const result = execSync(command).toString();
+
+      const expected =
+        [
+          "test-cases/has-errors/type-error.ts:3:50",
+          "test-cases/has-errors/syntax-error.ts:2:11",
+        ].join("\n") + "\n";
+
+      assert.strictEqual(result, expected);
+    });
+  });
+
+  describe("--reason option", () => {
+    it("should print reason", () => {
+      const command = `npm --silent run dev -- --config test-cases/has-errors --reason`;
+
+      const result = execSync(command).toString();
+
+      const expected =
+        [
+          `test-cases/has-errors/type-error.ts "Property 'age' is missing in type '{ name: string; }' but required in type 'User'."`,
+          `test-cases/has-errors/syntax-error.ts "'}' expected."`,
+        ].join("\n") + "\n";
+
+      assert.strictEqual(result, expected);
+    });
+  });
+
+  describe("--position and --reason options", () => {
+    it("should print position and reason", () => {
+      const command = `npm --silent run dev -- --config test-cases/has-errors --position --reason`;
+
+      const result = execSync(command).toString();
+
+      const expected =
+        [
+          `test-cases/has-errors/type-error.ts:3:50 "Property 'age' is missing in type '{ name: string; }' but required in type 'User'."`,
+          `test-cases/has-errors/syntax-error.ts:2:11 "'}' expected."`,
+        ].join("\n") + "\n";
+
+      assert.strictEqual(result, expected);
+    });
+  });
 });
