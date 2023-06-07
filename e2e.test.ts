@@ -8,7 +8,7 @@ describe("ts-error-files", () => {
 
     const result = execSync(command).toString();
 
-    const expected = "";
+    const expected = "\n";
 
     assert.strictEqual(result, expected);
   });
@@ -20,8 +20,8 @@ describe("ts-error-files", () => {
 
     const expected =
       [
-        "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/type-error.ts",
-        "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/syntax-error.ts",
+        "test-cases/has-errors/type-error.ts",
+        "test-cases/has-errors/syntax-error.ts",
       ].join("\n") + "\n";
 
     assert.strictEqual(result, expected);
@@ -35,8 +35,8 @@ describe("ts-error-files", () => {
 
       const expected =
         [
-          "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/type-error.ts",
-          "/Users/main/ghq/github.com/aku11i/ts-error-files/test-cases/has-errors/syntax-error.ts",
+          "test-cases/has-errors/type-error.ts",
+          "test-cases/has-errors/syntax-error.ts",
         ].join("\n") + "\n";
 
       assert.strictEqual(result, expected);

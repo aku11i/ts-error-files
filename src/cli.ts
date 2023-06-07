@@ -6,6 +6,7 @@ import * as path from "node:path";
 import { Project } from "ts-morph";
 import { findErrorDiagnostics } from "./find-error-diagnostics.js";
 import { listFilesFromDiagnostics } from "./list-files-from-diagnostics.js";
+import { convertToRelativePath } from "./convert-to-relative-path.js";
 
 const [, , ...args] = process.argv;
 
@@ -54,6 +55,8 @@ const project = new Project({ tsConfigFilePath });
 const program = project.getProgram();
 
 const errorDiagnostics = findErrorDiagnostics(program);
-const errorFiles = listFilesFromDiagnostics(errorDiagnostics);
+const errorFiles = listFilesFromDiagnostics(errorDiagnostics).map((file) =>
+  convertToRelativePath(file)
+);
 
 console.log(errorFiles.join("\n"));
