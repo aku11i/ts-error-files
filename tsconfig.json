@@ -2,10 +2,10 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "NodeNext",
+    "lib": ["ESNext"],
     "rootDir": "./src",
     "declaration": true,
     "declarationMap": true,
-    "emitDeclarationOnly": true,
     "sourceMap": true,
     "outDir": "./dist",
     "esModuleInterop": false,
@@ -22,5 +22,7 @@
     "allowUnusedLabels": true,
     "allowUnreachableCode": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src"],
+  "exclude": ["test-cases"]
 }
