@@ -29,10 +29,10 @@ export function printDiagnostics(
       typeof _reason === "string" ? _reason : _reason.getMessageText();
 
     const line = diagnostic.getLineNumber();
-    const start = diagnostic.getStart();
+    const length = diagnostic.getLength();
     const position =
-      typeof line === "number" && typeof start === "number"
-        ? `${line}:${start}`
+      typeof line === "number" && typeof length === "number"
+        ? `${line}:${length}`
         : undefined;
 
     return { filePath, reason, position };

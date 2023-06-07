@@ -70,8 +70,8 @@ describe("ts-error-files", () => {
 
       const expected =
         [
-          "test-cases/has-errors/type-error.ts:3:50",
-          "test-cases/has-errors/syntax-error.ts:2:11",
+          "test-cases/has-errors/type-error.ts:3:4",
+          "test-cases/has-errors/syntax-error.ts:2:0",
         ].join("\n") + "\n";
 
       assert.strictEqual(result, expected);
@@ -102,8 +102,8 @@ describe("ts-error-files", () => {
 
       const expected =
         [
-          `test-cases/has-errors/type-error.ts:3:50 "Property 'age' is missing in type '{ name: string; }' but required in type 'User'."`,
-          `test-cases/has-errors/syntax-error.ts:2:11 "'}' expected."`,
+          `test-cases/has-errors/type-error.ts:3:4 "Property 'age' is missing in type '{ name: string; }' but required in type 'User'."`,
+          `test-cases/has-errors/syntax-error.ts:2:0 "'}' expected."`,
         ].join("\n") + "\n";
 
       assert.strictEqual(result, expected);
