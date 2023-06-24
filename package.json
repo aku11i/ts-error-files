@@ -3,7 +3,9 @@
   "version": "0.0.10",
   "description": "",
   "type": "module",
-  "bin": "dist/cli.js",
+  "bin": {
+    "ts-error-files": "dist/cli.js"
+  },
   "files": [
     "dist"
   ],
