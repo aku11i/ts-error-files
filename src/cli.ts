@@ -6,6 +6,7 @@ import * as path from "node:path";
 import { Project } from "ts-morph";
 import { findErrorDiagnostics } from "./find-error-diagnostics.js";
 import { printDiagnostics } from "./print-diagnostics.js";
+import { findTsLibFolder } from "./find-ts-lib-folder.js";
 
 const [, , ...args] = process.argv;
 
@@ -62,11 +63,16 @@ const tsConfigFilePath = (() => {
     : maybe;
 })();
 
+const tsLibPath = await findTsLibFolder(tsConfigFilePath);
+
 const printReason = typeof values["reason"] === "boolean" && values["reason"];
 const printPosition =
   typeof values["position"] === "boolean" && values["position"];
 
-const project = new Project({ tsConfigFilePath });
+const project = new Project({
+  tsConfigFilePath,
+  ...(tsLibPath ? { libFolderPath: tsLibPath } : {}),
+});
 
 const errorDiagnostics = findErrorDiagnostics(project);
 
