@@ -4,7 +4,7 @@ import assert from "assert";
 
 describe("ts-error-files", () => {
   it("should print nothing when tsc is succeeded", () => {
-    const command = `npm --silent run dev -- --config test-cases/no-errors/tsconfig.json`;
+    const command = `npm --silent run dev -- --project test-cases/no-errors/tsconfig.json`;
 
     const result = execSync(command).toString();
 
@@ -14,7 +14,7 @@ describe("ts-error-files", () => {
   });
 
   it("should print error files when tsc detects any errors", () => {
-    const command = `npm --silent run dev -- --config test-cases/has-errors/tsconfig.json`;
+    const command = `npm --silent run dev -- --project test-cases/has-errors/tsconfig.json`;
 
     const result = execSync(command).toString();
 
@@ -27,9 +27,9 @@ describe("ts-error-files", () => {
     assert.strictEqual(result, expected);
   });
 
-  describe("--config option", () => {
+  describe("--project option", () => {
     it(`should complement "tsconfig.json" when directory path is specified`, () => {
-      const command = `npm --silent run dev -- --config test-cases/has-errors`;
+      const command = `npm --silent run dev -- --project test-cases/has-errors`;
 
       const result = execSync(command).toString();
 
@@ -54,7 +54,9 @@ describe("ts-error-files", () => {
           "Usage: ts-error-files [options]",
           "",
           "Options:",
-          "  -c, --config <path>  Path to tsconfig.json or its directory",
+          "  -p, --project <path>  Path to tsconfig.json or it's directory",
+          "  -r, --reason         Print reason of error",
+          "  -P, --position       Print position of error",
           "  -h, --help           Display this help message",
         ].join("\n") + "\n";
 
@@ -64,7 +66,7 @@ describe("ts-error-files", () => {
 
   describe("--position option", () => {
     it("should print position", () => {
-      const command = `npm --silent run dev -- --config test-cases/has-errors --position`;
+      const command = `npm --silent run dev -- --project test-cases/has-errors --position`;
 
       const result = execSync(command).toString();
 
@@ -80,7 +82,7 @@ describe("ts-error-files", () => {
 
   describe("--reason option", () => {
     it("should print reason", () => {
-      const command = `npm --silent run dev -- --config test-cases/has-errors --reason`;
+      const command = `npm --silent run dev -- --project test-cases/has-errors --reason`;
 
       const result = execSync(command).toString();
 
@@ -96,7 +98,7 @@ describe("ts-error-files", () => {
 
   describe("--position and --reason options", () => {
     it("should print position and reason", () => {
-      const command = `npm --silent run dev -- --config test-cases/has-errors --position --reason`;
+      const command = `npm --silent run dev -- --project test-cases/has-errors --position --reason`;
 
       const result = execSync(command).toString();
 

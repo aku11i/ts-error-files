@@ -10,10 +10,10 @@ import { printDiagnostics } from "./print-diagnostics.js";
 const [, , ...args] = process.argv;
 
 const options: ParseArgsConfig["options"] = {
-  config: {
+  project: {
     type: "string",
-    short: "c",
-    default: "tsconfig.json",
+    short: "p",
+    default: process.cwd(),
   },
   help: {
     type: "boolean",
@@ -27,7 +27,7 @@ const options: ParseArgsConfig["options"] = {
   },
   position: {
     type: "boolean",
-    short: "p",
+    short: "P",
     default: false,
   },
 };
@@ -42,7 +42,9 @@ if (help) {
     "Usage: ts-error-files [options]",
     "",
     "Options:",
-    "  -c, --config <path>  Path to tsconfig.json or its directory",
+    "  -p, --project <path>  Path to tsconfig.json or it's directory",
+    "  -r, --reason         Print reason of error",
+    "  -P, --position       Print position of error",
     "  -h, --help           Display this help message",
   ].join("\n");
 
@@ -52,7 +54,7 @@ if (help) {
 }
 
 const tsConfigFilePath = (() => {
-  const maybe = values["config"] as string;
+  const maybe = values["project"] as string;
 
   // TODO existing check
   return fs.statSync(maybe).isDirectory()
