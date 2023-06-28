@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "lib": ["ESNext"],
     "rootDir": "./src",
     "declaration": true,
@@ -24,5 +25,6 @@
     "skipLibCheck": true
   },
   "include": ["src"],
-  "exclude": ["test-cases"]
+  "exclude": ["test-cases"],
+  "ts-node": { "swc": true }
 }

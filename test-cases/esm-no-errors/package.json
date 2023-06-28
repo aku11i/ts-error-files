@@ -1,0 +1,11 @@
+{
+  "name": "esm-no-errors",
+  "type": "module",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "ts-error-files": "../..",
+    "typescript": "^5.1.3"
+  }
+}

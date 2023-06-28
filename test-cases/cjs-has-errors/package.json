@@ -1,0 +1,11 @@
+{
+  "name": "cjs-has-errors",
+  "type": "commonjs",
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "ts-error-files": "../..",
+    "typescript": "^5.1.3"
+  }
+}
